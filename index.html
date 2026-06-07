@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Tugas Sesi 11 - Adriel Novra Marcelino | Neo UI</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ===== NEO-FUTURISTIC GLASS UI ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at 20% 30%, #0a0c1a, #03050b);
+      color: #eef5ff;
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated grid background */
+    .grid-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+
+    .glow-orb {
+      position: fixed;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(0, 255, 255, 0.08), transparent 70%);
+      border-radius: 50%;
+      bottom: -20%;
+      right: -20%;
+      z-index: 0;
+      filter: blur(80px);
+      animation: pulseGlow 12s infinite alternate;
+    }
+
+    .glow-orb2 {
+      position: fixed;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent 70%);
+      border-radius: 50%;
+      top: -20%;
+      left: -20%;
+      z-index: 0;
+      filter: blur(100px);
+      animation: pulseGlow2 15s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(1); opacity: 0.4; }
+      100% { transform: scale(1.2); opacity: 0.8; }
+    }
+
+    @keyframes pulseGlow2 {
+      0% { transform: scale(1); opacity: 0.3; }
+      100% { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* === HEADER SECTION === */
+    .hero-section {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.5rem;
+      color: #00ffff;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff, #00ffff, #a855f7);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shimmer 6s linear infinite;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .identity-bar {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      background: rgba(10, 14, 26, 0.6);
+      backdrop-filter: blur(12px);
+      border-radius: 80px;
+      padding: 0.8rem 2rem;
+      margin: 1.5rem auto;
+      width: fit-content;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    .identity-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 500;
+    }
+
+    .identity-item .label {
+      color: #94a3b8;
+    }
+
+    .identity-item .value {
+      color: #00ffff;
+      font-weight: 600;
+      background: rgba(0, 255, 255, 0.1);
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+    }
+
+    .session-badge-new {
+      background: linear-gradient(135deg, #00ffff20, #a855f720);
+      border: 1px solid #a855f7;
+      color: #e9c0ff;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+
+    /* === CARD DESIGN - ULTRA MODERN === */
+    .card-modern {
+      background: rgba(15, 20, 35, 0.55);
+      backdrop-filter: blur(16px);
+      border-radius: 2rem;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-modern:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 255, 255, 0.6);
+      box-shadow: 0 25px 40px -15px rgba(0, 255, 255, 0.2);
+    }
+
+    .card-header-modern {
+      padding: 1.5rem 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .card-header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .badge-number {
+      background: linear-gradient(145deg, #00ffff, #0088aa);
+      width: 42px;
+      height: 42px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #0a0c1a;
+      box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+    }
+
+    .card-title-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .tag {
+      background: rgba(168, 85, 247, 0.2);
+      border: 1px solid #a855f7;
+      border-radius: 40px;
+      padding: 0.35rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #d8b4fe;
+    }
+
+    .card-body {
+      padding: 1.8rem 2rem 2rem;
+    }
+
+    .desc-text {
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .desc-text code {
+      background: rgba(0, 255, 255, 0.15);
+      padding: 0.2rem 0.6rem;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #5ee0fa;
+    }
+
+    /* Code Block Futuristic */
+    .code-future {
+      background: #070b12;
+      border-radius: 1.2rem;
+      margin: 1.5rem 0;
+      border: 1px solid rgba(0, 255, 255, 0.25);
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+
+    .code-future-header {
+      padding: 0.8rem 1.5rem;
+      background: rgba(0, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    .file-icon {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #5ee0fa;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-future {
+      background: linear-gradient(95deg, #00ffff, #a855f7);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      color: #0a0c1a;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 255, 255, 0.3);
+    }
+
+    .btn-future:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(0, 255, 255, 0.5);
+      filter: brightness(1.05);
+    }
+
+    pre {
+      padding: 1.5rem;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: #d6e6ff;
+      margin: 0;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0f1420;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #00ffff;
+      border-radius: 10px;
+    }
+
+    /* Footer */
+    .footer-future {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 255, 255, 0.2);
+      color: #94a3b8;
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* Modal modern */
+    .modal-new {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(3, 5, 11, 0.96);
+      backdrop-filter: blur(24px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .modal-new.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-container {
+      width: 90%;
+      max-width: 1100px;
+      height: 85vh;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 0;
+      top: -50px;
+      font-size: 2.5rem;
+      background: none;
+      border: none;
+      color: #5ee0fa;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 300;
+    }
+
+    .modal-close:hover {
+      transform: scale(1.1);
+      color: white;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border-radius: 1.5rem;
+      border: 2px solid #00ffff;
+      background: #0a0e1a;
+    }
+
+    /* Responsive */
+    @media (max-width: 780px) {
+      .container {
+        padding: 1rem 1rem 2rem;
+      }
+      .card-header-modern, .card-body {
+        padding: 1rem;
+      }
+      .identity-bar {
+        padding: 0.5rem 1rem;
+        gap: 0.8rem;
+      }
+      .identity-item {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* floating animation */
+    .float-effect {
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid-bg"></div>
+  <div class="glow-orb"></div>
+  <div class="glow-orb2"></div>
+
+  <div class="container">
+    <div class="hero-section">
+      <div class="chip">
+        <span>⚡</span> DART ADVANCED · SESI 11
+      </div>
+      <h1 class="hero-title">Adriel Novra Marcelino</h1>
+      <div class="identity-bar">
+        <div class="identity-item"><span class="label">📘 NIM</span><span class="value">251410017</span></div>
+        <div class="identity-item"><span class="label">🏛️ Kelas</span><span class="value">SI2A</span></div>
+        <div class="identity-item"><span class="label">🎯 Materi</span><span class="value">Redirecting Constructors</span></div>
+      </div>
+      <div class="session-badge-new">✨ REDIRECTING CONSTRUCTORS · FACTORY PATTERN ✨</div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="card-modern">
+      <div class="card-header-modern">
+        <div class="card-header-left">
+          <div class="badge-number">01</div>
+          <div class="card-title-text">Circle · Constructor Chaining</div>
+        </div>
+        <div class="tag"> REDIRECTING CONSTRUCTORS</div>
+      </div>
+      <div class="card-body">
+        <div class="desc-text">
+          Implementasi konsep <code>Redirecting Constructors</code> pada kelas <code>Circle</code> dalam Dart.
+          Konstruktor utama validasi radius positif, lalu tiga konstruktor alternatif 
+          <code>fromDiameter</code>, <code>fromKeliling</code>, dan <code>fromLuas</code> 
+          langsung mendelegasikan ke konstruktor utama tanpa duplikasi kode (prinsip DRY).
+        </div>
+
+        <!-- Code Block 1 -->
+        <div class="code-future">
+          <div class="code-future-header">
+            <div class="file-icon">📘 lib / circle.dart</div>
+          </div>
+          <pre><code>// Nama    : ADRIEL NOVRA MARCELINO
+// NIM     : 251410017
+// Kelas   : SI2A
+
+import 'dart:math' as math;
+
+class Circle {
+  final double radius;
+
+  Circle(this.radius) {
+    if (radius <= 0) {
+      throw ArgumentError('Radius harus positif!');
+    }
+  }
+
+  Circle.fromDiameter(double d) : this(d / 2);
+  Circle.fromKeliling(double kel) : this(kel / (2 * math.pi));
+  Circle.fromLuas(double area) : this(math.sqrt(area / math.pi));
+
+  double get diameter => radius * 2;
+  double get keliling => 2 * math.pi * radius;
+  double get luas => math.pi * radius * radius;
+
+  @override
+  String toString() => 'Circle(r:${radius.toStringAsFixed(2)}, '
+      'd:${diameter.toStringAsFixed(2)}, k:${keliling.toStringAsFixed(2)}, L:${luas.toStringAsFixed(2)})';
+}</code></pre>
+        </div>
+
+        <!-- Code Block 2 with RUN button -->
+        <div class="code-future" id="code-circle-run">
+          <div class="code-future-header">
+            <div class="file-icon">🧪 test / circle_test.dart</div>
+            <button class="btn-future" onclick="runModernCode('code-circle-run', 'ada5f42d6febe50b01619e6b6196b548')">
+              JALANKAN 
+            </button>
+          </div>
+          <pre><code>// Nama    : ADRIEL NOVRA MARCELINO
+// NIM     : 251410017
+// Kelas   : SI2A
+
+import 'libcircle.dart';
+
+void main() {
+  print('━━━ REDIRECTING CONSTRUCTORS DEMO ━━━');
+  print('ADRIEL NOVRA MARCELINO | 251410017 | SI2A\n');
+
+  final cRadius = Circle(5.0);
+  print('🔵 Circle radius 5.0 → $cRadius\n');
+
+  final cDiam = Circle.fromDiameter(10.0);
+  print('🟢 fromDiameter(10) → $cDiam');
+  print('✅ radius valid? ${cRadius.radius == cDiam.radius}\n');
+
+  final cKel = Circle.fromKeliling(31.4159265359);
+  print('🟠 fromKeliling ~31.416 → $cKel');
+
+  final cLuas = Circle.fromLuas(78.5398163397);
+  print('🔴 fromLuas ~78.54 → $cLuas');
+
+  print('\n⚠️ Error test (radius negatif)');
+  try { Circle(-1.0); } catch(e) { print('   ❌ ${e.toString().split('(')[0]}'); }
+  
+  print('\n✨ Implementasi Redirecting Constructors sukses ✨');
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-future">
+      <span>⚡ ADRIEL NOVRA MARCELINO • 251410017 • SI2A • 2026 ⚡</span>
+      <span style="font-size: 0.7rem; letter-spacing: 1px;">NEO-FUTURISTIC UI/UX — GLASS + CYBERPUNK VIBE</span>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-new" id="neoModal" onclick="if(event.target === this) closeNeoModal()">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeNeoModal()">✕</button>
+      <div id="neoIframeContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    function runModernCode(blockId, gistId) {
+      const modal = document.getElementById('neoModal');
+      const container = document.getElementById('neoIframeContainer');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      const iframe = document.createElement('iframe');
+      if (gistId) {
+        iframe.src = `https://dartpad.dev/embed-inline.html?theme=dark&run=true&id=${gistId}`;
+      } else {
+        const wrapper = document.getElementById(blockId);
+        const codeElem = wrapper?.querySelector('code');
+        if (codeElem) {
+          const rawCode = codeElem.innerText;
+          iframe.src = `https://dartpad.dev/embed-inline.html?theme=dark&run=true&code=${encodeURIComponent(rawCode)}`;
+        }
+      }
+      container.innerHTML = '';
+      container.appendChild(iframe);
+    }
+
+    function closeNeoModal() {
+      const modal = document.getElementById('neoModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      document.getElementById('neoIframeContainer').innerHTML = '';
+    }
+
+    // Disable right-click untuk proteksi minor (optional)
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+  </script>
+</body>
+
+</html>
