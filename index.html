@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Tugas Sesi 11 - Adriel Novra Marcelino | Neo UI</title>
+  <title>Tugas Sesi 11 - Adriel Novra Marcelino | Industrial Heavy Metal</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
   <style>
-    /* ===== NEO-FUTURISTIC GLASS UI ===== */
+    /* ===== INDUSTRIAL HEAVY METAL THEME ===== */
+    /* Berlawanan 180° dengan Neo-Futuristic Glass UI */
     * {
       margin: 0;
       padding: 0;
@@ -17,63 +18,70 @@
     }
 
     body {
-      background: radial-gradient(ellipse at 20% 30%, #0a0c1a, #03050b);
-      color: #eef5ff;
+      background: #1a1512;
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(80, 60, 45, 0.15) 0px,
+        rgba(80, 60, 45, 0.15) 2px,
+        transparent 2px,
+        transparent 8px
+      );
+      color: #c0b8a8;
       font-family: 'Space Grotesk', sans-serif;
       line-height: 1.5;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* Animated grid background */
-    .grid-bg {
+    /* Rusted metal texture background */
+    .metal-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
-      background-image: 
-        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.08"><rect width="200" height="200" fill="none"/><circle cx="40" cy="40" r="25" fill="%23b85c1a" opacity="0.3"/><circle cx="160" cy="120" r="35" fill="%238c3a0a" opacity="0.2"/><rect x="100" y="150" width="80" height="15" rx="5" fill="%236b3a1a" opacity="0.25"/><rect x="20" y="170" width="50" height="10" rx="3" fill="%23994c1a" opacity="0.2"/></svg>');
+      background-repeat: repeat;
+      background-size: 180px 180px;
       pointer-events: none;
     }
 
-    .glow-orb {
+    /* Heavy dust particles / smoke effect */
+    .smoke-cloud {
+      position: fixed;
+      width: 80vw;
+      height: 80vw;
+      background: radial-gradient(circle, rgba(139, 69, 19, 0.08), transparent 70%);
+      border-radius: 50%;
+      bottom: -30%;
+      left: -20%;
+      z-index: 0;
+      filter: blur(90px);
+      animation: smokeRise 18s infinite alternate;
+    }
+
+    .smoke-cloud2 {
       position: fixed;
       width: 60vw;
       height: 60vw;
-      background: radial-gradient(circle, rgba(0, 255, 255, 0.08), transparent 70%);
-      border-radius: 50%;
-      bottom: -20%;
-      right: -20%;
-      z-index: 0;
-      filter: blur(80px);
-      animation: pulseGlow 12s infinite alternate;
-    }
-
-    .glow-orb2 {
-      position: fixed;
-      width: 50vw;
-      height: 50vw;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent 70%);
+      background: radial-gradient(circle, rgba(80, 50, 35, 0.12), transparent 70%);
       border-radius: 50%;
       top: -20%;
-      left: -20%;
+      right: -15%;
       z-index: 0;
       filter: blur(100px);
-      animation: pulseGlow2 15s infinite alternate;
+      animation: smokeRise2 14s infinite alternate-reverse;
     }
 
-    @keyframes pulseGlow {
-      0% { transform: scale(1); opacity: 0.4; }
-      100% { transform: scale(1.2); opacity: 0.8; }
+    @keyframes smokeRise {
+      0% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+      100% { transform: scale(1.3) translate(-30px, -40px); opacity: 0.7; }
     }
 
-    @keyframes pulseGlow2 {
-      0% { transform: scale(1); opacity: 0.3; }
-      100% { transform: scale(1.3); opacity: 0.7; }
+    @keyframes smokeRise2 {
+      0% { transform: scale(1); opacity: 0.25; }
+      100% { transform: scale(1.4) translate(40px, 30px); opacity: 0.65; }
     }
 
     .container {
@@ -84,59 +92,54 @@
       z-index: 2;
     }
 
-    /* === HEADER SECTION === */
+    /* === HEADER SECTION - INDUSTRIAL === */
     .hero-section {
       text-align: center;
       margin-bottom: 4rem;
       position: relative;
     }
 
-    .chip {
+    .chip-industrial {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(0, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(0, 255, 255, 0.3);
+      background: #2a2018;
+      backdrop-filter: blur(4px);
+      border: 1px solid #b85c1a;
       padding: 0.5rem 1.2rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
       font-weight: 500;
-      letter-spacing: 0.5px;
+      letter-spacing: 2px;
       margin-bottom: 1.5rem;
-      color: #00ffff;
+      color: #e8a44a;
+      text-transform: uppercase;
+      font-family: monospace;
     }
 
     .hero-title {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      font-weight: 700;
-      background: linear-gradient(135deg, #ffffff, #00ffff, #a855f7);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: shimmer 6s linear infinite;
+      font-size: clamp(2rem, 7vw, 4rem);
+      font-weight: 800;
+      color: #c97e3a;
+      text-shadow: 4px 4px 0 #4a2a10, 2px 2px 8px rgba(0,0,0,0.8);
       margin-bottom: 1rem;
       letter-spacing: -0.02em;
+      text-transform: uppercase;
     }
 
-    @keyframes shimmer {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-
-    .identity-bar {
+    .identity-bar-industrial {
       display: flex;
       justify-content: center;
       gap: 2rem;
       flex-wrap: wrap;
-      background: rgba(10, 14, 26, 0.6);
-      backdrop-filter: blur(12px);
-      border-radius: 80px;
+      background: #1f1814;
+      backdrop-filter: blur(8px);
+      border-radius: 0px;
       padding: 0.8rem 2rem;
       margin: 1.5rem auto;
       width: fit-content;
-      border: 1px solid rgba(0, 255, 255, 0.2);
+      border: 1px solid #b85c1a;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.05), 0 4px 8px rgba(0,0,0,0.3);
     }
 
     .identity-item {
@@ -147,51 +150,54 @@
     }
 
     .identity-item .label {
-      color: #94a3b8;
+      color: #8a7a6a;
     }
 
     .identity-item .value {
-      color: #00ffff;
-      font-weight: 600;
-      background: rgba(0, 255, 255, 0.1);
+      color: #e8a44a;
+      font-weight: 700;
+      background: #2a1a0e;
       padding: 0.2rem 0.8rem;
-      border-radius: 40px;
+      border-radius: 0px;
+      font-family: monospace;
     }
 
-    .session-badge-new {
-      background: linear-gradient(135deg, #00ffff20, #a855f720);
-      border: 1px solid #a855f7;
-      color: #e9c0ff;
+    .session-badge-industrial {
+      background: #2a1a0e;
+      border: 1px solid #b85c1a;
+      color: #e8a44a;
       padding: 0.5rem 1.5rem;
-      border-radius: 40px;
-      font-size: 0.85rem;
+      border-radius: 0px;
+      font-size: 0.8rem;
       font-weight: 600;
       display: inline-block;
       margin-top: 0.5rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    /* === CARD DESIGN - ULTRA MODERN === */
-    .card-modern {
-      background: rgba(15, 20, 35, 0.55);
-      backdrop-filter: blur(16px);
-      border-radius: 2rem;
-      border: 1px solid rgba(0, 255, 255, 0.2);
+    /* === CARD DESIGN - HEAVY METAL / INDUSTRIAL === */
+    .card-industrial {
+      background: #1c1612;
+      backdrop-filter: blur(4px);
+      border-radius: 0px;
+      border: 1px solid #b85c1a;
       margin-bottom: 2.5rem;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+      box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.4);
     }
 
-    .card-modern:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0, 255, 255, 0.6);
-      box-shadow: 0 25px 40px -15px rgba(0, 255, 255, 0.2);
+    .card-industrial:hover {
+      transform: translateY(-4px);
+      border-color: #e8a44a;
+      box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.5);
     }
 
-    .card-header-modern {
-      padding: 1.5rem 2rem;
-      background: rgba(0, 0, 0, 0.3);
-      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    .card-header-industrial {
+      padding: 1.2rem 2rem;
+      background: #0f0c0a;
+      border-bottom: 3px solid #b85c1a;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -205,37 +211,37 @@
       gap: 1rem;
     }
 
-    .badge-number {
-      background: linear-gradient(145deg, #00ffff, #0088aa);
-      width: 42px;
-      height: 42px;
-      border-radius: 18px;
+    .badge-industrial {
+      background: #b85c1a;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      font-size: 1.2rem;
-      color: #0a0c1a;
-      box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+      font-weight: 900;
+      font-size: 1.4rem;
+      color: #1f1814;
+      font-family: monospace;
+      clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
     }
 
-    .card-title-text {
-      font-size: 1.5rem;
+    .card-title-text-industrial {
+      font-size: 1.4rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #fff, #a855f7);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: #d4944a;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
     }
 
-    .tag {
-      background: rgba(168, 85, 247, 0.2);
-      border: 1px solid #a855f7;
-      border-radius: 40px;
+    .tag-industrial {
+      background: #2a1a0e;
+      border: 1px solid #b85c1a;
+      border-radius: 0px;
       padding: 0.35rem 1rem;
       font-size: 0.7rem;
       font-weight: 600;
-      color: #d8b4fe;
+      color: #e8a44a;
+      font-family: monospace;
     }
 
     .card-body {
@@ -243,72 +249,73 @@
     }
 
     .desc-text {
-      color: #cbd5e1;
+      color: #a89888;
       margin-bottom: 2rem;
       font-size: 0.95rem;
       line-height: 1.65;
     }
 
     .desc-text code {
-      background: rgba(0, 255, 255, 0.15);
+      background: #0f0c0a;
       padding: 0.2rem 0.6rem;
-      border-radius: 10px;
+      border-radius: 0px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.85rem;
-      color: #5ee0fa;
+      color: #e8a44a;
+      border-left: 3px solid #b85c1a;
     }
 
-    /* Code Block Futuristic */
-    .code-future {
-      background: #070b12;
-      border-radius: 1.2rem;
+    /* Code Block - Industrial */
+    .code-industrial {
+      background: #0a0806;
+      border-radius: 0px;
       margin: 1.5rem 0;
-      border: 1px solid rgba(0, 255, 255, 0.25);
+      border: 1px solid #b85c1a;
       overflow: hidden;
-      transition: all 0.2s;
     }
 
-    .code-future-header {
+    .code-header-industrial {
       padding: 0.8rem 1.5rem;
-      background: rgba(0, 255, 255, 0.05);
+      background: #130e0b;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
-      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      border-bottom: 1px solid #b85c1a;
     }
 
     .file-icon {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
-      color: #5ee0fa;
+      color: #d4944a;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .btn-future {
-      background: linear-gradient(95deg, #00ffff, #a855f7);
+    .btn-industrial {
+      background: #b85c1a;
       border: none;
       padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 0.75rem;
-      color: #0a0c1a;
+      border-radius: 0px;
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 700;
+      font-size: 0.7rem;
+      color: #1a1512;
       cursor: pointer;
       transition: all 0.2s;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      box-shadow: 0 2px 8px rgba(0, 255, 255, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .btn-future:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 18px rgba(0, 255, 255, 0.5);
-      filter: brightness(1.05);
+    .btn-industrial:hover {
+      background: #e8a44a;
+      transform: scale(1.02);
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.5);
     }
 
     pre {
@@ -317,48 +324,50 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.8rem;
       line-height: 1.6;
-      color: #d6e6ff;
+      color: #bcac9c;
       margin: 0;
     }
 
-    /* Scrollbar */
+    /* Scrollbar Industrial */
     ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
     }
 
     ::-webkit-scrollbar-track {
-      background: #0f1420;
+      background: #1a1512;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #00ffff;
-      border-radius: 10px;
+      background: #b85c1a;
+      border-radius: 0px;
     }
 
-    /* Footer */
-    .footer-future {
+    /* Footer Industrial */
+    .footer-industrial {
       text-align: center;
       margin-top: 4rem;
       padding-top: 2rem;
-      border-top: 1px solid rgba(0, 255, 255, 0.2);
-      color: #94a3b8;
-      font-size: 0.8rem;
+      border-top: 2px solid #b85c1a;
+      color: #8a7a6a;
+      font-size: 0.75rem;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    /* Modal modern */
-    .modal-new {
+    /* Modal Industrial */
+    .modal-industrial {
       display: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(3, 5, 11, 0.96);
-      backdrop-filter: blur(24px);
+      background: #0a0806f0;
+      backdrop-filter: blur(12px);
       z-index: 10000;
       justify-content: center;
       align-items: center;
@@ -366,7 +375,7 @@
       transition: opacity 0.3s;
     }
 
-    .modal-new.active {
+    .modal-industrial.active {
       display: flex;
       opacity: 1;
     }
@@ -385,7 +394,7 @@
       font-size: 2.5rem;
       background: none;
       border: none;
-      color: #5ee0fa;
+      color: #e8a44a;
       cursor: pointer;
       transition: 0.2s;
       font-weight: 300;
@@ -393,15 +402,15 @@
 
     .modal-close:hover {
       transform: scale(1.1);
-      color: white;
+      color: #b85c1a;
     }
 
     iframe {
       width: 100%;
       height: 100%;
-      border-radius: 1.5rem;
-      border: 2px solid #00ffff;
-      background: #0a0e1a;
+      border-radius: 0px;
+      border: 2px solid #b85c1a;
+      background: #0a0806;
     }
 
     /* Responsive */
@@ -409,52 +418,55 @@
       .container {
         padding: 1rem 1rem 2rem;
       }
-      .card-header-modern, .card-body {
+      .card-header-industrial, .card-body {
         padding: 1rem;
       }
-      .identity-bar {
+      .identity-bar-industrial {
         padding: 0.5rem 1rem;
         gap: 0.8rem;
       }
-      .identity-item {
-        font-size: 0.8rem;
-      }
     }
 
-    /* floating animation */
-    .float-effect {
-      transition: all 0.2s ease;
+    /* Additional industrial details */
+    .rivet {
+      width: 8px;
+      height: 8px;
+      background: #8a6a4a;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 4px;
+      box-shadow: inset -1px -1px 0 #3a2a1a;
     }
   </style>
 </head>
 
 <body>
-  <div class="grid-bg"></div>
-  <div class="glow-orb"></div>
-  <div class="glow-orb2"></div>
+  <div class="metal-bg"></div>
+  <div class="smoke-cloud"></div>
+  <div class="smoke-cloud2"></div>
 
   <div class="container">
     <div class="hero-section">
-      <div class="chip">
-        <span>⚡</span> DART ADVANCED · SESI 11
+      <div class="chip-industrial">
+        <span>⚙️</span> DART ADVANCED · SESI 11 · INDUSTRIAL EDITION <span>⚙️</span>
       </div>
       <h1 class="hero-title">Adriel Novra Marcelino</h1>
-      <div class="identity-bar">
+      <div class="identity-bar-industrial">
         <div class="identity-item"><span class="label">📘 NIM</span><span class="value">251410017</span></div>
-        <div class="identity-item"><span class="label">🏛️ Kelas</span><span class="value">SI2A</span></div>
-        <div class="identity-item"><span class="label">🎯 Materi</span><span class="value">Redirecting Constructors</span></div>
+        <div class="identity-item"><span class="label">🏭 Kelas</span><span class="value">SI2A</span></div>
+        <div class="identity-item"><span class="label">🔧 Materi</span><span class="value">Redirecting Constructors</span></div>
       </div>
-      <div class="session-badge-new">✨ REDIRECTING CONSTRUCTORS · FACTORY PATTERN ✨</div>
+      <div class="session-badge-industrial">🔩 REDIRECTING CONSTRUCTORS · NO NONSENSE 🔩</div>
     </div>
 
     <!-- Main Card -->
-    <div class="card-modern">
-      <div class="card-header-modern">
+    <div class="card-industrial">
+      <div class="card-header-industrial">
         <div class="card-header-left">
-          <div class="badge-number">01</div>
-          <div class="card-title-text">Circle · Constructor Chaining</div>
+          <div class="badge-industrial">01</div>
+          <div class="card-title-text-industrial">Circle · Constructor Chaining</div>
         </div>
-        <div class="tag"> REDIRECTING CONSTRUCTORS</div>
+        <div class="tag-industrial">⚡ REDIRECTING CONSTRUCTORS ⚡</div>
       </div>
       <div class="card-body">
         <div class="desc-text">
@@ -462,12 +474,13 @@
           Konstruktor utama validasi radius positif, lalu tiga konstruktor alternatif 
           <code>fromDiameter</code>, <code>fromKeliling</code>, dan <code>fromLuas</code> 
           langsung mendelegasikan ke konstruktor utama tanpa duplikasi kode (prinsip DRY).
+          <span class="rivet"></span><span class="rivet"></span>
         </div>
 
         <!-- Code Block 1 -->
-        <div class="code-future">
-          <div class="code-future-header">
-            <div class="file-icon">📘 lib / circle.dart</div>
+        <div class="code-industrial">
+          <div class="code-header-industrial">
+            <div class="file-icon">📁 lib / circle.dart</div>
           </div>
           <pre><code>// Nama    : ADRIEL NOVRA MARCELINO
 // NIM     : 251410017
@@ -499,11 +512,11 @@ class Circle {
         </div>
 
         <!-- Code Block 2 with RUN button -->
-        <div class="code-future" id="code-circle-run">
-          <div class="code-future-header">
+        <div class="code-industrial" id="code-circle-run">
+          <div class="code-header-industrial">
             <div class="file-icon">🧪 test / circle_test.dart</div>
-            <button class="btn-future" onclick="runModernCode('code-circle-run', 'ada5f42d6febe50b01619e6b6196b548')">
-              JALANKAN 
+            <button class="btn-industrial" onclick="runIndustrialCode('code-circle-run', 'ada5f42d6febe50b01619e6b6196b548')">
+              🔨 RUN
             </button>
           </div>
           <pre><code>// Nama    : ADRIEL NOVRA MARCELINO
@@ -517,17 +530,17 @@ void main() {
   print('ADRIEL NOVRA MARCELINO | 251410017 | SI2A\n');
 
   final cRadius = Circle(5.0);
-  print('🔵 Circle radius 5.0 → $cRadius\n');
+  print('🔴 Circle radius 5.0 → $cRadius\n');
 
   final cDiam = Circle.fromDiameter(10.0);
-  print('🟢 fromDiameter(10) → $cDiam');
+  print('🟠 fromDiameter(10) → $cDiam');
   print('✅ radius valid? ${cRadius.radius == cDiam.radius}\n');
 
   final cKel = Circle.fromKeliling(31.4159265359);
-  print('🟠 fromKeliling ~31.416 → $cKel');
+  print('🟡 fromKeliling ~31.416 → $cKel');
 
   final cLuas = Circle.fromLuas(78.5398163397);
-  print('🔴 fromLuas ~78.54 → $cLuas');
+  print('🟤 fromLuas ~78.54 → $cLuas');
 
   print('\n⚠️ Error test (radius negatif)');
   try { Circle(-1.0); } catch(e) { print('   ❌ ${e.toString().split('(')[0]}'); }
@@ -538,24 +551,24 @@ void main() {
       </div>
     </div>
 
-    <div class="footer-future">
-      <span>⚡ ADRIEL NOVRA MARCELINO • 251410017 • SI2A • 2026 ⚡</span>
-      <span style="font-size: 0.7rem; letter-spacing: 1px;">NEO-FUTURISTIC UI/UX — GLASS + CYBERPUNK VIBE</span>
+    <div class="footer-industrial">
+      <span>⚙️ ADRIEL NOVRA MARCELINO • 251410017 • SI2A • 2026 ⚙️</span>
+      <span style="font-size: 0.65rem;">INDUSTRIAL HEAVY METAL EDITION — RAW · RUGGED · NO BULLSHIT</span>
     </div>
   </div>
 
   <!-- Modal -->
-  <div class="modal-new" id="neoModal" onclick="if(event.target === this) closeNeoModal()">
+  <div class="modal-industrial" id="industrialModal" onclick="if(event.target === this) closeIndustrialModal()">
     <div class="modal-container">
-      <button class="modal-close" onclick="closeNeoModal()">✕</button>
-      <div id="neoIframeContainer"></div>
+      <button class="modal-close" onclick="closeIndustrialModal()">✕</button>
+      <div id="industrialIframeContainer"></div>
     </div>
   </div>
 
   <script>
-    function runModernCode(blockId, gistId) {
-      const modal = document.getElementById('neoModal');
-      const container = document.getElementById('neoIframeContainer');
+    function runIndustrialCode(blockId, gistId) {
+      const modal = document.getElementById('industrialModal');
+      const container = document.getElementById('industrialIframeContainer');
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
       
@@ -574,14 +587,13 @@ void main() {
       container.appendChild(iframe);
     }
 
-    function closeNeoModal() {
-      const modal = document.getElementById('neoModal');
+    function closeIndustrialModal() {
+      const modal = document.getElementById('industrialModal');
       modal.classList.remove('active');
       document.body.style.overflow = '';
-      document.getElementById('neoIframeContainer').innerHTML = '';
+      document.getElementById('industrialIframeContainer').innerHTML = '';
     }
 
-    // Disable right-click untuk proteksi minor (optional)
     document.addEventListener('contextmenu', (e) => e.preventDefault());
   </script>
 </body>
